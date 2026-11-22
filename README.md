@@ -9,12 +9,12 @@
 <br>
 
 [![Ver la web](https://img.shields.io/badge/ver%20la%20web-redline--26.netlify.app-07070A?style=for-the-badge&labelColor=FF2D1F)](https://redline-26.netlify.app/)
+![Datos](https://img.shields.io/badge/datos-en%20tiempo%20real-07070A?style=for-the-badge&labelColor=FF8A00)
 
 ![HTML · CSS · JS](https://img.shields.io/badge/HTML·CSS·JS-sin%20compilar-07070A?style=for-the-badge&logo=javascript&logoColor=FFC21A)
 ![Netlify Functions](https://img.shields.io/badge/Netlify-Functions-07070A?style=for-the-badge&logo=netlify&logoColor=32E6E2)
 ![GSAP](https://img.shields.io/badge/GSAP-ScrollTrigger-07070A?style=for-the-badge&logo=greensock&logoColor=88CE02)
 ![Three.js](https://img.shields.io/badge/Three.js-WebGL-07070A?style=for-the-badge&logo=threedotjs&logoColor=F4F1EC)
-![Datos](https://img.shields.io/badge/datos-en%20tiempo%20real-07070A?style=for-the-badge&labelColor=FF8A00)
 
 </div>
 
@@ -70,16 +70,17 @@ REDLINE/26 sigue el **Mundial de MotoGP, Moto2 y Moto3** en cinco páginas: inic
 
 ```mermaid
 %%{init: {"theme": "base", "themeVariables": {"primaryColor": "#0E0E13", "primaryTextColor": "#F4F1EC", "primaryBorderColor": "#FF2D1F", "lineColor": "#FF2D1F", "clusterBkg": "#07070A", "clusterBorder": "#3A3A44", "titleColor": "#9A9AA6", "fontSize": "15px"}}}%%
-flowchart LR
-    API["API pública de resultados<br/>calendario · sesiones · clasificaciones"]
+flowchart TB
+    API["API pública de resultados<br/>calendario, sesiones y clasificaciones"]
 
-    subgraph Netlify["Netlify"]
-        Fn["Función /api/season<br/>caché de 10 minutos"] --> Calc["motogp.mjs<br/>ganadores · poles · constructores<br/>puntos en juego · próxima carrera"]
+    subgraph Netlify["Netlify · servidor"]
+        direction LR
+        Fn["Función /api/season<br/>caché de 10 minutos"] --> Calc["motogp.mjs<br/>ganadores, poles, constructores,<br/>puntos en juego y próxima carrera"]
     end
 
     subgraph Web["Navegador"]
-        Live["live.js<br/>datos + titulares generados"] --> Pages["5 páginas<br/>GSAP · Lenis · Three.js"]
-        Copia["Copia guardada<br/>navegador → snapshot.js"] -.->|si la API falla| Live
+        direction LR
+        Copia["Copia de respaldo<br/>navegador o snapshot.js"] -.->|si la API falla| Live["live.js<br/>datos y titulares generados"] --> Pages["5 páginas<br/>GSAP · Lenis · Three.js"]
     end
 
     API --> Fn
