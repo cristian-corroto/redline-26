@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Clasificación · Mundial de MotoGP 2026 | REDLINE/26</title>
+  <meta name="description" content="Clasificación del Mundial 2026 de MotoGP, Moto2 y Moto3: el duelo por el título, quién puede ser campeón todavía y el Mundial de constructores.">
+  <meta name="theme-color" content="#07070a">
+  <link rel="canonical" href="https://redline-26.netlify.app/clasificacion.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="REDLINE/26">
+  <meta property="og:title" content="Clasificación · Mundial de MotoGP 2026 · REDLINE/26">
+  <meta property="og:description" content="Clasificación del Mundial 2026 de MotoGP, Moto2 y Moto3: el duelo por el título, quién puede ser campeón todavía y el Mundial de constructores.">
+  <meta property="og:url" content="https://redline-26.netlify.app/clasificacion.html">
+  <meta property="og:image" content="https://redline-26.netlify.app/assets/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="REDLINE/26 · Mundial 2026 de MotoGP, Moto2 y Moto3">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://redline-26.netlify.app/assets/img/og.png">
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/vendor/lenis.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <script>
+    (function () {
+      var d = document.documentElement;
+      try {
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('js-anim');
+        if (sessionStorage.getItem('rl-in')) {
+          d.classList.add('is-entering');
+          var t = sessionStorage.getItem('rl-title');
+          if (t) document.addEventListener('DOMContentLoaded', function () {
+            var e = document.querySelector('.veil__title'); if (e) e.textContent = t;
+          });
+          setTimeout(function () { d.classList.remove('is-entering'); }, 4000); // seguro anti-bloqueo
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <noscript><style>.js-anim [data-split] .wi{transform:none!important}.veil{display:none}</style></noscript>
+
+  <script type="importmap">{ "imports": { "three": "./assets/vendor/three.module.js" } }</script>
+  <script src="assets/vendor/gsap.min.js" defer></script>
+  <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/vendor/lenis.min.js" defer></script>
+  <script type="module" src="js/main.js"></script>
+</head>
+<body data-page="clasificacion">
+  <a class="skip" href="#main">Saltar al contenido</a>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"><div class="cursor__ring"></div><div class="cursor__dot"></div></div>
+  <div class="progress" aria-hidden="true"><i></i></div>
+  <div class="veil" aria-hidden="true"><p class="veil__title"></p></div>
+
+  <header id="nav" class="nav"></header>
+  <div id="menu" class="menu"></div>
+
+  <main id="main">
+    <noscript><p class="noscript mono">Esta web necesita JavaScript para mostrar el calendario, los resultados y las clasificaciones.</p></noscript>
+    <section class="phero" aria-labelledby="ph-title">
+      <p class="phero__ghost display" aria-hidden="true">01</p>
+      <div class="wrap phero__in">
+        <p class="eyebrow mono" id="ph-eyebrow">CAMPEONATO DEL MUNDO 2026</p>
+        <h1 class="display phero__title" id="ph-title" data-split>Clasifi<em>cación</em></h1>
+        <div class="phero__foot">
+          <p class="lead" id="ph-lead" data-reveal>Tres campeonatos, tres historias: la clasificación oficial de MotoGP, Moto2 y Moto3, actualizada tras cada Gran Premio.</p>
+          <dl class="stats" id="ph-stats" data-reveal></dl>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="sec sec--tight" id="duelo" aria-labelledby="duel-title">
+      <div class="wrap">
+        <div class="sec__head">
+          <p class="eyebrow mono">MOTOGP · CARA A CARA</p>
+          <h2 class="display h2" id="duel-title" data-split></h2>
+        </div>
+        <div class="duel glass" id="duel"><i class="c c--tl"></i><i class="c c--tr"></i><i class="c c--bl"></i><i class="c c--br"></i></div>
+      </div>
+    </section>
+
+    <section class="sec st" id="pilotos" aria-labelledby="st-title">
+      <div class="wrap">
+        <div class="sec__head">
+          <p class="eyebrow mono">CAMPEONATO DE PILOTOS</p>
+          <h2 class="display h2" id="st-title" data-split>La tabla <em>completa</em></h2>
+        </div>
+        <div class="panel-head">
+          <div class="tabs" id="st-tabs" role="tablist" aria-label="Categoría de la clasificación">
+            <button role="tab" id="st-tabs-motogp" data-cat="motogp" aria-controls="st-panel" aria-selected="true">MotoGP</button>
+            <button role="tab" id="st-tabs-moto2" data-cat="moto2" aria-controls="st-panel" aria-selected="false" tabindex="-1">Moto2</button>
+            <button role="tab" id="st-tabs-moto3" data-cat="moto3" aria-controls="st-panel" aria-selected="false" tabindex="-1">Moto3</button>
+          </div>
+        </div>
+        <div id="st-panel" role="tabpanel" aria-live="polite">
+          <ol class="st__list" id="st-list"></ol>
+          <p class="st__meta mono"><span id="st-source"></span><span id="st-max"></span></p>
+
+          <div class="math-wrap" style="margin-top:clamp(4rem,9vw,7rem)">
+            <p class="eyebrow mono">LAS CUENTAS DEL TÍTULO</p>
+            <p class="verdict" id="math-verdict"></p>
+            <div class="math" id="math"></div>
+            <p class="math__legend mono" aria-hidden="true"><span class="k-now"><i></i>Puntos actuales</span><span class="k-max"><i></i>Máximo alcanzable</span><span class="k-line"><i></i>Puntos del líder</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec sec--tight" id="constructores" aria-labelledby="mk-title">
+      <div class="wrap">
+        <div class="sec__head">
+          <p class="eyebrow mono">MOTOGP · FÁBRICAS</p>
+          <h2 class="display h2" id="mk-title" data-split>Mundial de <em>constructores</em></h2>
+        </div>
+        <ol class="hbars" id="makers"></ol>
+        <p class="note mono" id="makers-src"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer"></footer>
+</body>
+</html>

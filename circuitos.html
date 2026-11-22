@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Circuitos · Mundial de MotoGP 2026 | REDLINE/26</title>
+  <meta name="description" content="Los 22 circuitos del Mundial de MotoGP 2026: mapa de la ruta, longitudes de cada trazado y ganadores de cada Gran Premio.">
+  <meta name="theme-color" content="#07070a">
+  <link rel="canonical" href="https://redline-26.netlify.app/circuitos.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="REDLINE/26">
+  <meta property="og:title" content="Circuitos · Mundial de MotoGP 2026 · REDLINE/26">
+  <meta property="og:description" content="Los 22 circuitos del Mundial de MotoGP 2026: mapa de la ruta, longitudes de cada trazado y ganadores de cada Gran Premio.">
+  <meta property="og:url" content="https://redline-26.netlify.app/circuitos.html">
+  <meta property="og:image" content="https://redline-26.netlify.app/assets/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="REDLINE/26 · Mundial 2026 de MotoGP, Moto2 y Moto3">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://redline-26.netlify.app/assets/img/og.png">
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/vendor/lenis.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <script>
+    (function () {
+      var d = document.documentElement;
+      try {
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('js-anim');
+        if (sessionStorage.getItem('rl-in')) {
+          d.classList.add('is-entering');
+          var t = sessionStorage.getItem('rl-title');
+          if (t) document.addEventListener('DOMContentLoaded', function () {
+            var e = document.querySelector('.veil__title'); if (e) e.textContent = t;
+          });
+          setTimeout(function () { d.classList.remove('is-entering'); }, 4000); // seguro anti-bloqueo
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <noscript><style>.js-anim [data-split] .wi{transform:none!important}.veil{display:none}</style></noscript>
+
+  <script type="importmap">{ "imports": { "three": "./assets/vendor/three.module.js" } }</script>
+  <script src="assets/vendor/gsap.min.js" defer></script>
+  <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/vendor/lenis.min.js" defer></script>
+  <script type="module" src="js/main.js"></script>
+</head>
+<body data-page="circuitos">
+  <a class="skip" href="#main">Saltar al contenido</a>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"><div class="cursor__ring"></div><div class="cursor__dot"></div></div>
+  <div class="progress" aria-hidden="true"><i></i></div>
+  <div class="veil" aria-hidden="true"><p class="veil__title"></p></div>
+
+  <header id="nav" class="nav"></header>
+  <div id="menu" class="menu"></div>
+
+  <main id="main">
+    <noscript><p class="noscript mono">Esta web necesita JavaScript para mostrar el calendario, los resultados y las clasificaciones.</p></noscript>
+    <section class="phero" aria-labelledby="ph-title">
+      <p class="phero__ghost display" aria-hidden="true">22</p>
+      <div class="wrap phero__in">
+        <p class="eyebrow mono">TEMPORADA 2026 · LA RUTA DEL MUNDIAL</p>
+        <h1 class="display phero__title" id="ph-title" data-split>Circui<em>tos</em></h1>
+        <div class="phero__foot">
+          <p class="lead" data-reveal>Veintidós trazados repartidos por cuatro continentes. Un mapa de la ruta, las longitudes de cada circuito y quién ganó en cada uno.</p>
+          <dl class="stats" id="ph-stats" data-reveal></dl>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="sec sec--tight" id="ruta" aria-labelledby="map-title">
+      <div class="wrap">
+        <div class="sec__head">
+          <p class="eyebrow mono">MAPA DE LA TEMPORADA</p>
+          <h2 class="display h2" id="map-title" data-split>La vuelta <em>al mundo</em></h2>
+        </div>
+        <div class="map glass" id="map"><i class="c c--tl"></i><i class="c c--tr"></i><i class="c c--bl"></i><i class="c c--br"></i></div>
+        <p class="map__legend mono" aria-hidden="true"><span class="k-done"><i></i>Disputado</span><span class="k-next"><i></i>Próximo</span><span><i></i>Por disputar</span><span class="k-line-d"><i></i>Ruta recorrida</span><span class="k-line-t"><i></i>Ruta pendiente</span></p>
+        <p class="note mono">Proyección equirrectangular. Distancias en línea recta (ortodrómicas) entre circuitos consecutivos; ubicaciones aproximadas.</p>
+      </div>
+    </section>
+
+    <section class="sec sec--tight" id="longitudes" aria-labelledby="len-title">
+      <div class="wrap">
+        <div class="sec__head">
+          <p class="eyebrow mono">LONGITUD DEL TRAZADO</p>
+          <h2 class="display h2" id="len-title" data-split>Del más corto <em>al más largo</em></h2>
+        </div>
+        <ol class="hbars" id="len"></ol>
+        <p class="note mono">Longitudes orientativas en kilómetros: verificar con la ficha oficial de cada circuito.</p>
+      </div>
+    </section>
+
+    <section class="sec sec--tight" id="fichas" aria-labelledby="cards-title">
+      <div class="wrap">
+        <div class="sec__head">
+          <p class="eyebrow mono">FICHAS</p>
+          <h2 class="display h2" id="cards-title" data-split>Los 22 <em>trazados</em></h2>
+        </div>
+        <ol class="ccards" id="ccards"></ol>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer"></footer>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mundial de MotoGP 2026 · calendario, resultados y clasificación | REDLINE/26</title>
+  <meta name="description" content="Todo el Mundial de MotoGP 2026 en un solo circuito: próxima carrera, resultados, clasificación y calendario de MotoGP, Moto2 y Moto3, actualizados tras cada Gran Premio.">
+  <meta name="theme-color" content="#07070a">
+  <link rel="canonical" href="https://redline-26.netlify.app/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="REDLINE/26">
+  <meta property="og:title" content="Mundial de MotoGP 2026 · REDLINE/26">
+  <meta property="og:description" content="Próxima carrera, resultados y clasificación de MotoGP, Moto2 y Moto3 con datos oficiales actualizados tras cada Gran Premio.">
+  <meta property="og:url" content="https://redline-26.netlify.app/">
+  <meta property="og:image" content="https://redline-26.netlify.app/assets/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="REDLINE/26 · Mundial 2026 de MotoGP, Moto2 y Moto3">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://redline-26.netlify.app/assets/img/og.png">
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/vendor/lenis.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <script>
+    (function () {
+      var d = document.documentElement;
+      try {
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('js-anim');
+        if (sessionStorage.getItem('rl-in')) {
+          d.classList.add('is-entering');
+          var t = sessionStorage.getItem('rl-title');
+          if (t) document.addEventListener('DOMContentLoaded', function () {
+            var e = document.querySelector('.veil__title'); if (e) e.textContent = t;
+          });
+          setTimeout(function () { d.classList.remove('is-entering'); }, 4000); // seguro anti-bloqueo
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <noscript><style>.js-anim [data-split] .wi{transform:none!important}.veil{display:none}</style></noscript>
+
+  <script type="importmap">{ "imports": { "three": "./assets/vendor/three.module.js" } }</script>
+  <script src="assets/vendor/gsap.min.js" defer></script>
+  <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/vendor/lenis.min.js" defer></script>
+  <script type="module" src="js/main.js"></script>
+</head>
+
+<body data-page="home">
+  <a class="skip" href="#main">Saltar al contenido</a>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="cursor" aria-hidden="true"><div class="cursor__ring"></div><div class="cursor__dot"></div></div>
+  <div class="progress" aria-hidden="true"><i></i></div>
+  <div class="veil" aria-hidden="true"><p class="veil__title"></p></div>
+
+  <header id="nav" class="nav"></header>
+  <div id="menu" class="menu"></div>
+
+  <main id="main">
+    <noscript><p class="noscript mono">Esta web necesita JavaScript para mostrar el calendario, los resultados y las clasificaciones.</p></noscript>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero" aria-labelledby="h1">
+      <div class="hero__glow" aria-hidden="true"></div>
+
+      <h1 class="hero__title" id="h1">
+        <span class="sr-only">Mundial de MotoGP 2026: calendario, resultados y clasificación de MotoGP, Moto2 y Moto3</span>
+        <span class="t t1" aria-hidden="true">MUNDIAL</span>
+        <span class="t t2" aria-hidden="true">20<em>26</em></span>
+      </h1>
+
+      <!-- Trazado ilustrativo (no es un circuito real) -->
+      <svg class="hero__track" viewBox="0 0 1000 600" aria-hidden="true" focusable="false">
+        <defs>
+          <filter id="blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="7"/></filter>
+        </defs>
+        <path id="trk-glow" class="glow" d="M120,420 C80,300 160,180 300,170 C420,160 440,260 540,250 C660,238 640,110 780,110 C900,110 940,230 880,330 C830,415 700,380 650,450 C600,520 460,520 380,470 C300,420 250,520 170,500 C140,492 125,460 120,420 Z"/>
+        <path class="kerb" d="M120,420 C80,300 160,180 300,170 C420,160 440,260 540,250 C660,238 640,110 780,110 C900,110 940,230 880,330 C830,415 700,380 650,450 C600,520 460,520 380,470 C300,420 250,520 170,500 C140,492 125,460 120,420 Z" transform="translate(500 300) scale(1.035) translate(-500 -300)"/>
+        <path id="trk-main" class="road" d="M120,420 C80,300 160,180 300,170 C420,160 440,260 540,250 C660,238 640,110 780,110 C900,110 940,230 880,330 C830,415 700,380 650,450 C600,520 460,520 380,470 C300,420 250,520 170,500 C140,492 125,460 120,420 Z"/>
+        <circle class="trk-dot" r="7" cx="120" cy="420"/>
+        <circle class="trk-dot" r="6" cx="120" cy="420"/>
+        <circle class="trk-dot" r="5" cx="120" cy="420"/>
+      </svg>
+
+      <div class="hero__hud mono">
+        <span class="pill" id="hud-round"><i class="dot"></i>TELEMETRÍA</span>
+        <span id="hud-asof"></span>
+      </div>
+
+      <div class="hero__bottom">
+        <div>
+          <div class="hero__phrases" id="hero-phrases" aria-hidden="true"></div>
+          <p class="sr-only" id="hero-sr"></p>
+        </div>
+        <div class="hero__cta">
+          <a class="btn btn--solid" href="#proximo" data-magnetic>Próximo GP <span aria-hidden="true">↓</span></a>
+          <a class="btn" href="clasificacion.html" data-title="Clasificación" data-magnetic>Clasificación <span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="hero__scroll mono" aria-hidden="true"><i></i>SCROLL</p>
+      </div>
+    </section>
+
+    <!-- ============ CUENTA ATRÁS ============ -->
+    <section class="sec" id="proximo" aria-labelledby="cd-title">
+      <div class="wrap">
+        <div class="sec__head">
+          <p class="eyebrow mono" id="cd-eyebrow"></p>
+          <h2 class="display h2" id="cd-title" data-split></h2>
+        </div>
+        <div class="cd glass" data-reveal>
+          <i class="c c--tl"></i><i class="c c--tr"></i><i class="c c--bl"></i><i class="c c--br"></i>
+          <div class="cd__grid" role="timer" aria-label="Cuenta atrás hasta la próxima carrera">
+            <div class="cd__cell"><b id="cd-d">00</b><span class="mono">Días</span></div>
+            <div class="cd__cell"><b id="cd-h">00</b><span class="mono">Horas</span></div>
+            <div class="cd__cell"><b id="cd-m">00</b><span class="mono">Min</span></div>
+            <div class="cd__cell"><b id="cd-s">00</b><span class="mono">Seg</span></div>
+          </div>
+          <p class="cd__meta mono" id="cd-meta"></p>
+          <p class="cd__status mono" id="cd-status"></p>
+        </div>
+        <ol class="cd__rail" id="cd-rail" aria-label="Carreras que quedan" data-reveal></ol>
+      </div>
+    </section>
+
+    <!-- ============ ESCENAS: LAS TRES CATEGORÍAS ============ -->
+    <section class="scenes" id="scenes" aria-label="Las tres categorías del Mundial">
+      <div class="scenes__bg" id="scenes-bg" aria-hidden="true"></div>
+      <div class="scenes__hud mono" aria-hidden="true">
+        <span>CATEGORÍAS</span>
+        <span><b id="sc-cur">01</b> / 03</span>
+      </div>
+      <div class="scenes__list" id="scenes-list"></div>
+      <div class="scenes__bar" aria-hidden="true"><i id="sc-bar"></i></div>
+    </section>
+
+    <!-- ============ ÚLTIMA CARRERA ============ -->
+    <section class="sec lr" id="resultados" aria-labelledby="lr-title">
+      <div class="wrap">
+        <div class="sec__head">
+          <p class="eyebrow mono" id="lr-eyebrow"></p>
+          <h2 class="display h2" id="lr-title" data-split></h2>
+        </div>
+        <div class="panel-head">
+          <div class="tabs" id="lr-tabs" role="tablist" aria-label="Categoría del resultado">
+            <button role="tab" id="lr-tab-motogp" data-cat="motogp" aria-controls="lr-panel" aria-selected="true">MotoGP</button>
+            <button role="tab" id="lr-tab-moto2" data-cat="moto2" aria-controls="lr-panel" aria-selected="false" tabindex="-1">Moto2</button>
+            <button role="tab" id="lr-tab-moto3" data-cat="moto3" aria-controls="lr-panel" aria-selected="false" tabindex="-1">Moto3</button>
+          </div>
+        </div>
+        <div class="lr__panel" id="lr-panel" role="tabpanel" aria-live="polite"></div>
+        <p class="lr-note mono"><span id="lr-note"></span><span id="lr-source"></span></p>
+      </div>
+    </section>
+
+    <!-- ============ CLASIFICACIÓN ============ -->
+    <section class="sec st" id="clasificacion" aria-labelledby="st-title">
+      <div class="wrap">
+        <div class="sec__head">
+          <p class="eyebrow mono">CAMPEONATO DE PILOTOS · TOP 10</p>
+          <h2 class="display h2" id="st-title" data-split>La lucha <em>por el título</em></h2>
+        </div>
+        <div class="panel-head">
+          <div class="tabs" id="st-tabs" role="tablist" aria-label="Categoría de la clasificación">
+            <button role="tab" id="st-tab-motogp" data-cat="motogp" aria-controls="st-panel" aria-selected="true">MotoGP</button>
+            <button role="tab" id="st-tab-moto2" data-cat="moto2" aria-controls="st-panel" aria-selected="false" tabindex="-1">Moto2</button>
+            <button role="tab" id="st-tab-moto3" data-cat="moto3" aria-controls="st-panel" aria-selected="false" tabindex="-1">Moto3</button>
+          </div>
+          <a class="btn btn--sm" href="clasificacion.html" data-title="Clasificación" data-magnetic>Clasificación completa <span aria-hidden="true">↗</span></a>
+        </div>
+        <div id="st-panel" role="tabpanel" aria-live="polite">
+          <ol class="st__list" id="st-list"></ol>
+        </div>
+        <p class="st__meta mono"><span id="st-source"></span><span id="st-max"></span></p>
+      </div>
+    </section>
+
+    <!-- ============ CARRERAS QUE QUEDAN ============ -->
+    <section class="sec rem" id="calendario" aria-labelledby="rem-title">
+      <div class="wrap">
+        <div class="sec__head">
+          <p class="eyebrow mono" id="rem-eyebrow">CALENDARIO</p>
+          <h2 class="display h2" id="rem-title" data-split>El final <em>de temporada</em></h2>
+        </div>
+        <ol class="rem__list" id="rem-list"></ol>
+        <p class="rem__note mono">Longitudes de circuito orientativas · fechas y horarios oficiales de motogp.com.</p>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true"><div class="marquee__track" id="marquee-track"></div></div>
+
+    <!-- ============ CIFRAS ============ -->
+    <section class="sec fig" aria-label="Cifras de la temporada">
+      <div class="wrap">
+        <p class="eyebrow mono">LA TEMPORADA EN CIFRAS</p>
+        <ul class="fig__list" id="fig-list"></ul>
+      </div>
+    </section>
+
+    <!-- ============ CTA FINAL ============ -->
+    <section class="sec cta" aria-labelledby="cta-title">
+      <h2 class="display cta__title" id="cta-title" data-split>No te pierdas <em>ni una vuelta</em></h2>
+      <p class="cta__sub" id="cta-sub" data-reveal>Calendario completo, horarios y resultados de cada Gran Premio.</p>
+      <a class="btn btn--solid btn--xl" href="calendario.html" data-title="Calendario" data-magnetic data-reveal>Ver calendario <span aria-hidden="true">↗</span></a>
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer"></footer>
+</body>
+</html>

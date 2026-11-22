@@ -1,0 +1,10 @@
+# Netlify (estado local y funciones empaquetadas)
+.netlify/
+
+# Dependencias
+node_modules/
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini

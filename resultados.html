@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Resultados · Mundial de MotoGP 2026 | REDLINE/26</title>
+  <meta name="description" content="Resultados del Mundial de MotoGP 2026: la última carrera de MotoGP, Moto2 y Moto3, los ganadores de cada Gran Premio y el reparto de victorias y poles.">
+  <meta name="theme-color" content="#07070a">
+  <link rel="canonical" href="https://redline-26.netlify.app/resultados.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="REDLINE/26">
+  <meta property="og:title" content="Resultados · Mundial de MotoGP 2026 · REDLINE/26">
+  <meta property="og:description" content="Resultados del Mundial de MotoGP 2026: la última carrera de MotoGP, Moto2 y Moto3, los ganadores de cada Gran Premio y el reparto de victorias y poles.">
+  <meta property="og:url" content="https://redline-26.netlify.app/resultados.html">
+  <meta property="og:image" content="https://redline-26.netlify.app/assets/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="REDLINE/26 · Mundial 2026 de MotoGP, Moto2 y Moto3">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://redline-26.netlify.app/assets/img/og.png">
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/vendor/lenis.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <script>
+    (function () {
+      var d = document.documentElement;
+      try {
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('js-anim');
+        if (sessionStorage.getItem('rl-in')) {
+          d.classList.add('is-entering');
+          var t = sessionStorage.getItem('rl-title');
+          if (t) document.addEventListener('DOMContentLoaded', function () {
+            var e = document.querySelector('.veil__title'); if (e) e.textContent = t;
+          });
+          setTimeout(function () { d.classList.remove('is-entering'); }, 4000); // seguro anti-bloqueo
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <noscript><style>.js-anim [data-split] .wi{transform:none!important}.veil{display:none}</style></noscript>
+
+  <script type="importmap">{ "imports": { "three": "./assets/vendor/three.module.js" } }</script>
+  <script src="assets/vendor/gsap.min.js" defer></script>
+  <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/vendor/lenis.min.js" defer></script>
+  <script type="module" src="js/main.js"></script>
+</head>
+<body data-page="resultados">
+  <a class="skip" href="#main">Saltar al contenido</a>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"><div class="cursor__ring"></div><div class="cursor__dot"></div></div>
+  <div class="progress" aria-hidden="true"><i></i></div>
+  <div class="veil" aria-hidden="true"><p class="veil__title"></p></div>
+
+  <header id="nav" class="nav"></header>
+  <div id="menu" class="menu"></div>
+
+  <main id="main">
+    <noscript><p class="noscript mono">Esta web necesita JavaScript para mostrar el calendario, los resultados y las clasificaciones.</p></noscript>
+    <section class="phero" aria-labelledby="ph-title">
+      <p class="phero__ghost display" id="ph-ghost" aria-hidden="true"></p>
+      <div class="wrap phero__in">
+        <p class="eyebrow mono" id="ph-eyebrow">TEMPORADA 2026</p>
+        <h1 class="display phero__title" id="ph-title" data-split>Resul<em>tados</em></h1>
+        <div class="phero__foot">
+          <p class="lead" data-reveal>Quién ganó, dónde y con qué moto. La última carrera al detalle y todas las carreras de la temporada, una a una.</p>
+          <dl class="stats" id="ph-stats" data-reveal></dl>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="sec lr" id="ultima" aria-labelledby="lr-title">
+      <div class="wrap">
+        <div class="sec__head">
+          <p class="eyebrow mono" id="lr-eyebrow"></p>
+          <h2 class="display h2" id="lr-title" data-split></h2>
+        </div>
+        <div class="panel-head">
+          <div class="tabs" id="lr-tabs" role="tablist" aria-label="Categoría del resultado">
+            <button role="tab" id="lr-tabs-motogp" data-cat="motogp" aria-controls="lr-panel" aria-selected="true">MotoGP</button>
+            <button role="tab" id="lr-tabs-moto2" data-cat="moto2" aria-controls="lr-panel" aria-selected="false" tabindex="-1">Moto2</button>
+            <button role="tab" id="lr-tabs-moto3" data-cat="moto3" aria-controls="lr-panel" aria-selected="false" tabindex="-1">Moto3</button>
+          </div>
+        </div>
+        <div class="lr__panel" id="lr-panel" role="tabpanel" aria-live="polite"></div>
+        <p class="lr-note mono"><span id="lr-note"></span><span id="lr-source"></span></p>
+      </div>
+    </section>
+
+    <section class="sec" id="reparto" aria-labelledby="rep-title">
+      <div class="wrap">
+        <div class="sec__head">
+          <p class="eyebrow mono">MOTOGP · CARRERA PRINCIPAL</p>
+          <h2 class="display h2" id="rep-title" data-split>El reparto <em>del botín</em></h2>
+        </div>
+        <div class="split2">
+          <div>
+            <div class="chart-h"><h3 class="display">Victorias por piloto</h3><span class="mono" id="rep-riders-n"></span></div>
+            <ol class="hbars" id="rep-riders"></ol>
+          </div>
+          <div>
+            <div class="chart-h"><h3 class="display">Por fábrica</h3><span class="mono">Victorias</span></div>
+            <ol class="hbars" id="rep-makers"></ol>
+            <div class="chart-h" style="margin-top:3rem"><h3 class="display">Poles</h3><span class="mono" id="rep-poles-n"></span></div>
+            <ol class="hbars" id="rep-poles"></ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec sec--tight" id="carreras" aria-labelledby="gp-title">
+      <div class="wrap">
+        <div class="sec__head">
+          <p class="eyebrow mono">GANADORES 2026</p>
+          <h2 class="display h2" id="gp-title" data-split>Carrera <em>a carrera</em></h2>
+        </div>
+        <ol class="wins" id="wins"></ol>
+        <p class="note mono">Fuente: resultados oficiales de motogp.com, actualizados automáticamente tras cada carrera.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer"></footer>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Calendario · Mundial de MotoGP 2026 | REDLINE/26</title>
+  <meta name="description" content="Calendario completo del Mundial de MotoGP 2026: 22 Grandes Premios con fechas, circuitos, ganadores y cuenta atrás para la próxima carrera.">
+  <meta name="theme-color" content="#07070a">
+  <link rel="canonical" href="https://redline-26.netlify.app/calendario.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="REDLINE/26">
+  <meta property="og:title" content="Calendario · Mundial de MotoGP 2026 · REDLINE/26">
+  <meta property="og:description" content="Calendario completo del Mundial de MotoGP 2026: 22 Grandes Premios con fechas, circuitos, ganadores y cuenta atrás para la próxima carrera.">
+  <meta property="og:url" content="https://redline-26.netlify.app/calendario.html">
+  <meta property="og:image" content="https://redline-26.netlify.app/assets/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="REDLINE/26 · Mundial 2026 de MotoGP, Moto2 y Moto3">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://redline-26.netlify.app/assets/img/og.png">
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/vendor/lenis.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <script>
+    (function () {
+      var d = document.documentElement;
+      try {
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('js-anim');
+        if (sessionStorage.getItem('rl-in')) {
+          d.classList.add('is-entering');
+          var t = sessionStorage.getItem('rl-title');
+          if (t) document.addEventListener('DOMContentLoaded', function () {
+            var e = document.querySelector('.veil__title'); if (e) e.textContent = t;
+          });
+          setTimeout(function () { d.classList.remove('is-entering'); }, 4000); // seguro anti-bloqueo
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <noscript><style>.js-anim [data-split] .wi{transform:none!important}.veil{display:none}</style></noscript>
+
+  <script type="importmap">{ "imports": { "three": "./assets/vendor/three.module.js" } }</script>
+  <script src="assets/vendor/gsap.min.js" defer></script>
+  <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/vendor/lenis.min.js" defer></script>
+  <script type="module" src="js/main.js"></script>
+</head>
+<body data-page="calendario">
+  <a class="skip" href="#main">Saltar al contenido</a>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"><div class="cursor__ring"></div><div class="cursor__dot"></div></div>
+  <div class="progress" aria-hidden="true"><i></i></div>
+  <div class="veil" aria-hidden="true"><p class="veil__title"></p></div>
+
+  <header id="nav" class="nav"></header>
+  <div id="menu" class="menu"></div>
+
+  <main id="main">
+    <noscript><p class="noscript mono">Esta web necesita JavaScript para mostrar el calendario, los resultados y las clasificaciones.</p></noscript>
+    <section class="phero" aria-labelledby="ph-title">
+      <p class="phero__ghost display" aria-hidden="true">22</p>
+      <div class="wrap phero__in">
+        <p class="eyebrow mono">TEMPORADA 2026 · 22 GRANDES PREMIOS · 4 CONTINENTES</p>
+        <h1 class="display phero__title" id="ph-title" data-split>Calen<em>dario</em></h1>
+        <div class="phero__foot">
+          <p class="lead" data-reveal>De Buriram a Valencia: las 22 paradas del Mundial más largo de la historia, con el ganador de cada Gran Premio y todo lo que queda por correr.</p>
+          <dl class="stats" id="ph-stats" data-reveal></dl>
+        </div>
+        <nav class="strip" id="strip" aria-label="Progreso de la temporada"></nav>
+        <p class="strip-legend mono" aria-hidden="true"><span class="l-done"><i></i>Disputado</span><span class="l-next"><i></i>Próximo</span><span><i></i>Por disputar</span></p>
+      </div>
+    </section>
+
+    <section class="sec sec--tight" id="proximo" aria-labelledby="next-title">
+      <div class="wrap">
+        <div class="sec__head"><p class="eyebrow mono" id="next-eyebrow"></p></div>
+        <div class="next glass" data-reveal>
+          <i class="c c--tl"></i><i class="c c--tr"></i><i class="c c--bl"></i><i class="c c--br"></i>
+          <div>
+            <h2 class="display next__title" id="next-title"></h2>
+            <p class="mono next__meta" id="next-meta"></p>
+          </div>
+          <div class="cd__grid" role="timer" aria-label="Cuenta atrás hasta la carrera de MotoGP">
+            <div class="cd__cell"><b id="cd-d">00</b><span class="mono">Días</span></div>
+            <div class="cd__cell"><b id="cd-h">00</b><span class="mono">Horas</span></div>
+            <div class="cd__cell"><b id="cd-m">00</b><span class="mono">Min</span></div>
+            <div class="cd__cell"><b id="cd-s">00</b><span class="mono">Seg</span></div>
+          </div>
+        </div>
+        <p class="cd__status mono" id="cd-status"></p>
+      </div>
+    </section>
+
+    <section class="sec sec--tight" id="temporada" aria-labelledby="cal-title">
+      <div class="wrap">
+        <div class="sec__head">
+          <p class="eyebrow mono">RONDA A RONDA</p>
+          <h2 class="display h2" id="cal-title" data-split>Las 22 <em>paradas</em></h2>
+        </div>
+        <div class="panel-head">
+          <div class="filters" id="cal-filters" role="group" aria-label="Filtrar Grandes Premios"></div>
+          <p class="mono" id="cal-count" aria-live="polite"></p>
+        </div>
+        <div id="cal-list"></div>
+        <p class="note mono">Ganador: carrera principal de MotoGP (motogp.com · Wikipedia) · Cada GP aparece en el mes en que se corre la carrera del domingo · Longitudes orientativas · Catar se reprogramó a noviembre; Portugal y Valencia se retrasaron una semana.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer"></footer>
+</body>
+</html>
