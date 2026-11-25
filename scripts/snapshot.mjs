@@ -2,7 +2,7 @@
    Es la copia de seguridad que usa la web si /api/season no responde.
    Uso: node scripts/snapshot.mjs */
 import { writeFile } from 'node:fs/promises';
-import { buildSeason } from '../netlify/lib/motogp.mjs';
+import { buildSeason } from '../lib/motogp.mjs';
 
 const t0 = Date.now();
 const data = await buildSeason();

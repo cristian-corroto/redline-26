@@ -1,4 +1,6 @@
-# Netlify (estado local y funciones empaquetadas)
+# Web generada (scripts/build.mjs) y estado local de Wrangler
+dist/
+.wrangler/
 .netlify/
 
 # Dependencias

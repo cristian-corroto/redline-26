@@ -1,0 +1,9 @@
+# Cloudflare Pages · la web se publica desde dist/ (ver scripts/build.mjs)
+name = "redline-26"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-11-01"
+
+# Datos de la temporada, actualizados por .github/workflows/season.yml
+[[kv_namespaces]]
+binding = "SEASON"
+id = "9010aab03f50404e87ba77688cc5c954"

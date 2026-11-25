@@ -1,0 +1,23 @@
+name: Datos de la temporada
+
+on:
+  schedule:
+    - cron: '*/30 * * * 5,6,0,1'   # fines de semana de GP (vie-lun): cada 30 min
+    - cron: '0 */6 * * 2,3,4'      # entre semana: cada 6 h
+  workflow_dispatch:
+
+concurrency: season
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/publish-season.mjs
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}

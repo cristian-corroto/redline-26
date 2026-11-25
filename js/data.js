@@ -2,7 +2,7 @@
    DATOS DE LA TEMPORADA 2026
 
    Los resultados ya no se editan a mano: js/live.js los descarga de /api/season
-   (función de Netlify que lee la API oficial de motogp.com) y rellena estas
+   (datos de la API oficial de motogp.com, actualizados cada 30 min) y rellena estas
    estructuras antes de pintar cada página. Si la API no responde, usa la última
    copia guardada en el navegador o, en su defecto, js/snapshot.js.
 
