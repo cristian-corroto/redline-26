@@ -8,7 +8,7 @@
 
 <br>
 
-[![Ver la web](https://img.shields.io/badge/ver%20la%20web-redline--26.pages.dev-07070A?style=for-the-badge&labelColor=FF2D1F)](https://redline-26.pages.dev/)
+[![Ver la web](https://img.shields.io/badge/ver%20la%20web-redline.cristiancorroto.com-07070A?style=for-the-badge&labelColor=FF2D1F)](https://redline.cristiancorroto.com/)
 ![Datos](https://img.shields.io/badge/datos-en%20tiempo%20real-07070A?style=for-the-badge&labelColor=FF8A00)
 
 ![HTML · CSS · JS](https://img.shields.io/badge/HTML·CSS·JS-sin%20compilar-07070A?style=for-the-badge&logo=javascript&logoColor=FFC21A)
@@ -24,7 +24,7 @@
 ## En 30 segundos
 
 <div align="center">
-<a href="https://redline-26.pages.dev/"><img src=".github/readme/vista-previa.webp" alt="Vista previa animada de la portada" width="100%"></a>
+<a href="https://redline.cristiancorroto.com/"><img src=".github/readme/vista-previa.webp" alt="Vista previa animada de la portada" width="100%"></a>
 <br><sub>▶ La portada: el trazado se dibuja solo y cada categoría tiene su escena al hacer scroll.</sub>
 </div>
 
@@ -149,7 +149,7 @@ En local, sin la función de Cloudflare, la web usa la copia de respaldo.
 
 Diseñada y desarrollada por **Cristian Corroto**, con apoyo intensivo de IA en el código, las animaciones y la integración con la API. La idea fue mía: que la web se sintiera como una retransmisión de televisión. Elegí el estilo y las animaciones, revisé cada pantalla hasta que la portada estuvo a la altura y, cuando actualizar los datos a mano tras cada Gran Premio se volvió un problema, propuse que la web se actualizara sola y comprobé que los datos coincidieran con los oficiales.
 
-[Ver la web](https://redline-26.pages.dev/) · [Portfolio](https://cristian-corroto.pages.dev) · [LinkedIn](https://www.linkedin.com/in/cristian-corroto)
+[Ver la web](https://redline.cristiancorroto.com/) · [Portfolio](https://cristiancorroto.com) · [LinkedIn](https://www.linkedin.com/in/cristian-corroto)
 
 ---
 
