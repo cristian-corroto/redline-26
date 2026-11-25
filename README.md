@@ -8,11 +8,12 @@
 
 <br>
 
-[![Ver la web](https://img.shields.io/badge/ver%20la%20web-redline--26.netlify.app-07070A?style=for-the-badge&labelColor=FF2D1F)](https://redline-26.netlify.app/)
+[![Ver la web](https://img.shields.io/badge/ver%20la%20web-redline--26.pages.dev-07070A?style=for-the-badge&labelColor=FF2D1F)](https://redline-26.pages.dev/)
 ![Datos](https://img.shields.io/badge/datos-en%20tiempo%20real-07070A?style=for-the-badge&labelColor=FF8A00)
 
 ![HTML · CSS · JS](https://img.shields.io/badge/HTML·CSS·JS-sin%20compilar-07070A?style=for-the-badge&logo=javascript&logoColor=FFC21A)
-![Netlify Functions](https://img.shields.io/badge/Netlify-Functions-07070A?style=for-the-badge&logo=netlify&logoColor=32E6E2)
+![Cloudflare Pages](https://img.shields.io/badge/Cloudflare-Pages%20·%20KV-07070A?style=for-the-badge&logo=cloudflare&logoColor=F38020)
+![GitHub Actions](https://img.shields.io/badge/GitHub-Actions-07070A?style=for-the-badge&logo=githubactions&logoColor=2088FF)
 ![GSAP](https://img.shields.io/badge/GSAP-ScrollTrigger-07070A?style=for-the-badge&logo=greensock&logoColor=88CE02)
 ![Three.js](https://img.shields.io/badge/Three.js-WebGL-07070A?style=for-the-badge&logo=threedotjs&logoColor=F4F1EC)
 
@@ -23,7 +24,7 @@
 ## En 30 segundos
 
 <div align="center">
-<a href="https://redline-26.netlify.app/"><img src=".github/readme/vista-previa.webp" alt="Vista previa animada de la portada" width="100%"></a>
+<a href="https://redline-26.pages.dev/"><img src=".github/readme/vista-previa.webp" alt="Vista previa animada de la portada" width="100%"></a>
 <br><sub>▶ La portada: el trazado se dibuja solo y cada categoría tiene su escena al hacer scroll.</sub>
 </div>
 
@@ -31,7 +32,7 @@
 
 REDLINE/26 sigue el **Mundial de MotoGP, Moto2 y Moto3** en cinco páginas: inicio, calendario, resultados, clasificación y circuitos.
 
-- 📡 **Se mantiene sola**: una función serverless lee la API pública de resultados y la web se actualiza minutos después de cada sesión, sin tocar el código ni volver a publicar.
+- 📡 **Se mantiene sola**: un proceso automático lee la API pública de resultados cada 30 minutos en fin de semana de carrera y la web se actualiza sola, sin tocar el código ni volver a publicar.
 - 🧮 **Calcula, no copia**: ganadores, poles, constructores, puntos en juego y quién ya es campeón salen de los datos en bruto.
 - ✍️ **Textos que se escriben solos**: los titulares de la portada cambian según quién lidera y por cuánto.
 - 🛟 **Nunca en blanco**: si la API falla, usa la última copia guardada.
@@ -73,9 +74,14 @@ REDLINE/26 sigue el **Mundial de MotoGP, Moto2 y Moto3** en cinco páginas: inic
 flowchart TB
     API["API pública de resultados<br/>calendario, sesiones y clasificaciones"]
 
-    subgraph Netlify["Netlify · servidor"]
+    subgraph GH["GitHub Actions · cada 30 min en fin de semana de GP"]
         direction LR
-        Fn["Función /api/season<br/>caché de 10 minutos"] --> Calc["motogp.mjs<br/>ganadores, poles, constructores,<br/>puntos en juego y próxima carrera"]
+        Job["publish-season.mjs"] --> Calc["motogp.mjs<br/>ganadores, poles, constructores,<br/>puntos en juego y próxima carrera"]
+    end
+
+    subgraph CF["Cloudflare · servidor"]
+        direction LR
+        KV["KV<br/>datos de la temporada"] --> Fn["Función /api/season"]
     end
 
     subgraph Web["Navegador"]
@@ -83,16 +89,17 @@ flowchart TB
         Copia["Copia de respaldo<br/>navegador o snapshot.js"] -.->|si la API falla| Live["live.js<br/>datos y titulares generados"] --> Pages["5 páginas<br/>GSAP · Lenis · Three.js"]
     end
 
-    API --> Fn
-    Calc --> Live
+    API --> Job
+    Calc --> KV
+    Fn --> Live
 ```
 
 ### Decisiones técnicas
 
 | Principio | Cómo se cumple |
 |---|---|
-| **Cero mantenimiento** | Los resultados no viven en el código: se piden a la API y se calculan en la función. Publicar solo hace falta si cambia el diseño. |
-| **Respetuosa con la fuente** | La respuesta se guarda 10 minutos en la caché de Netlify: la API se consulta como mucho una vez cada 10 minutos, haya las visitas que haya. |
+| **Cero mantenimiento** | Los resultados no viven en el código: un proceso programado en GitHub Actions los pide a la API, los calcula y los guarda en Cloudflare KV. Publicar solo hace falta si cambia el diseño. |
+| **Respetuosa con la fuente** | La API se consulta en un horario fijo (cada 30 minutos en fin de semana de carrera, cada 6 horas el resto), haya las visitas que haya. Los visitantes leen la copia guardada en Cloudflare, que responde al instante. |
 | **Tres niveles de respaldo** | API en vivo → última copia guardada en el navegador → copia incluida en la web. |
 | **Casos raros contemplados** | Banderas rojas con nueva salida, carreras canceladas y el final de temporada. |
 | **Sin compilar** | HTML, CSS y JavaScript con módulos ES. Las librerías van en local, sin depender de CDN. |
@@ -108,11 +115,11 @@ flowchart TB
 | Categorías | **3**: MotoGP, Moto2 y Moto3 |
 | Grandes Premios | **22**, actualizados solos durante la temporada |
 | Código | **unas 4.000 líneas** de JavaScript, CSS y HTML, sin contar datos ni librerías |
-| Actualización | minutos después de cada sesión, sin publicar de nuevo |
+| Actualización | como mucho 30 minutos después de cada sesión, sin publicar de nuevo |
 
 ## Tecnologías
 
-**HTML** · **CSS** · **JavaScript** (módulos ES) · **Netlify Functions** · API REST · GSAP + ScrollTrigger · Lenis · Three.js (WebGL) · SVG
+**HTML** · **CSS** · **JavaScript** (módulos ES) · **Cloudflare Pages Functions + KV** · **GitHub Actions** · API REST · GSAP + ScrollTrigger · Lenis · Three.js (WebGL) · SVG
 
 ## Estructura
 
@@ -123,8 +130,10 @@ js/live.js                 carga /api/season (o la copia) y genera los titulares
 js/home.js, calendario.js, resultados.js, clasificacion.js, circuitos.js
 js/effects.js · fx3d.js    scroll suave, textos animados y partículas WebGL
 js/transition.js           cortinilla entre páginas
-netlify/functions/         función /api/season
-netlify/lib/motogp.mjs     lectura de la API y cálculos
+functions/api/season.js    función /api/season (lee los datos de Cloudflare KV)
+lib/motogp.mjs             lectura de la API y cálculos
+scripts/publish-season.mjs publica los datos en KV (GitHub Actions, programado)
+scripts/build.mjs          prepara dist/ para publicar
 scripts/snapshot.mjs       regenera la copia de respaldo
 ```
 
@@ -134,13 +143,13 @@ scripts/snapshot.mjs       regenera la copia de respaldo
 python -m http.server 8080    # y abre http://localhost:8080
 ```
 
-En local, sin la función de Netlify, la web usa la copia de respaldo.
+En local, sin la función de Cloudflare, la web usa la copia de respaldo.
 
 ## Autor
 
 Diseñada y desarrollada por **Cristian Corroto**, con apoyo intensivo de IA en el código, las animaciones y la integración con la API. La idea fue mía: que la web se sintiera como una retransmisión de televisión. Elegí el estilo y las animaciones, revisé cada pantalla hasta que la portada estuvo a la altura y, cuando actualizar los datos a mano tras cada Gran Premio se volvió un problema, propuse que la web se actualizara sola y comprobé que los datos coincidieran con los oficiales.
 
-[Ver la web](https://redline-26.netlify.app/) · [Portfolio](https://cristian-corroto.netlify.app) · [LinkedIn](https://www.linkedin.com/in/cristian-corroto)
+[Ver la web](https://redline-26.pages.dev/) · [Portfolio](https://cristian-corroto.pages.dev) · [LinkedIn](https://www.linkedin.com/in/cristian-corroto)
 
 ---
 

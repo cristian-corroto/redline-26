@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://redline-26.netlify.app/sitemap.xml
+Sitemap: https://redline-26.pages.dev/sitemap.xml
