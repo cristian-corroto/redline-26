@@ -69,30 +69,7 @@ REDLINE/26 sigue el **Mundial de MotoGP, Moto2 y Moto3** en cinco páginas: inic
 
 ## Cómo funciona por dentro
 
-```mermaid
-%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#0E0E13", "primaryTextColor": "#F4F1EC", "primaryBorderColor": "#FF2D1F", "lineColor": "#FF2D1F", "clusterBkg": "#07070A", "clusterBorder": "#3A3A44", "titleColor": "#9A9AA6", "fontSize": "15px"}}}%%
-flowchart TB
-    API["API pública de resultados<br/>calendario, sesiones y clasificaciones"]
-
-    subgraph GH["GitHub Actions · cada 30 min en fin de semana de GP"]
-        direction LR
-        Job["publish-season.mjs"] --> Calc["motogp.mjs<br/>ganadores, poles, constructores,<br/>puntos en juego y próxima carrera"]
-    end
-
-    subgraph CF["Cloudflare · servidor"]
-        direction LR
-        KV["KV<br/>datos de la temporada"] --> Fn["Función /api/season"]
-    end
-
-    subgraph Web["Navegador"]
-        direction LR
-        Copia["Copia de respaldo<br/>navegador o snapshot.js"] -.->|si la API falla| Live["live.js<br/>datos y titulares generados"] --> Pages["5 páginas<br/>GSAP · Lenis · Three.js"]
-    end
-
-    API --> Job
-    Calc --> KV
-    Fn --> Live
-```
+<img src=".github/readme/arquitectura.webp" alt="Arquitectura: una tarea programada en GitHub Actions lee la API pública de resultados, motogp.mjs calcula la temporada y la guarda en Cloudflare KV; la web la pide a /api/season y live.js genera datos y titulares para las 5 páginas; si la API cae, usa una copia de respaldo." width="100%">
 
 ### Decisiones técnicas
 

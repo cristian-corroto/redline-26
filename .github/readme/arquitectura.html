@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REDLINE/26 · Arquitectura</title>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --paper: #07070a;
+      --ink: #f4f1ec;
+      --muted: #9a9aa6;
+      --accent: #ff2d1f;
+    }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+    }
+    .frame { max-width: 1040px; width: 100%; }
+    .eyebrow {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    h1 {
+      font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.75rem, 2.6vw + 0.75rem, 2.5rem);
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+    h1 span { color: var(--accent); }
+    .diagram-container { width: 100%; overflow-x: auto; }
+    svg { width: 100%; min-width: 960px; display: block; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <p class="eyebrow">REDLINE/26 · Arquitectura</p>
+    <h1>Cómo se mantiene <span>sola</span></h1>
+
+    <div class="diagram-container">
+    <svg viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="arquitectura-title arquitectura-desc">
+      <title id="arquitectura-title">REDLINE/26: cómo se mantiene sola</title>
+      <desc id="arquitectura-desc">Una tarea programada en GitHub Actions lee la API pública de resultados, calcula la temporada y la guarda en Cloudflare KV; la web la lee de ahí y, si falla, usa una copia de respaldo.</desc>
+      <defs>
+        <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+          <circle cx="1" cy="1" r="0.9" fill="rgba(244,241,236,0.09)"/>
+        </pattern>
+        <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#9a9aa6"/></marker>
+        <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#ff2d1f"/></marker>
+        <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#ff8a00"/></marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#07070a"/>
+      <rect width="100%" height="100%" fill="url(#dots)" opacity="0.6"/>
+
+      <!-- Zonas (antes que flechas y nodos) -->
+      <rect x="208" y="64" width="176" height="240" rx="8" fill="rgba(244,241,236,0.02)" stroke="rgba(244,241,236,0.12)" stroke-width="0.8"/>
+      <rect x="248" y="68" width="96" height="12" rx="2" fill="#07070a"/>
+      <text x="296" y="77" fill="#9a9aa6" font-size="8" font-family="'JetBrains Mono', monospace" text-anchor="middle" letter-spacing="0.14em">GITHUB ACTIONS</text>
+
+      <rect x="392" y="192" width="176" height="240" rx="8" fill="rgba(244,241,236,0.02)" stroke="rgba(244,241,236,0.12)" stroke-width="0.8"/>
+      <rect x="444" y="196" width="72" height="12" rx="2" fill="#07070a"/>
+      <text x="480" y="205" fill="#9a9aa6" font-size="8" font-family="'JetBrains Mono', monospace" text-anchor="middle" letter-spacing="0.14em">CLOUDFLARE</text>
+
+      <rect x="576" y="192" width="360" height="240" rx="8" fill="rgba(244,241,236,0.02)" stroke="rgba(244,241,236,0.12)" stroke-width="0.8"/>
+      <rect x="720" y="196" width="72" height="12" rx="2" fill="#07070a"/>
+      <text x="756" y="205" fill="#9a9aa6" font-size="8" font-family="'JetBrains Mono', monospace" text-anchor="middle" letter-spacing="0.14em">NAVEGADOR</text>
+
+      <!-- Flechas -->
+      <line x1="184" y1="128" x2="224" y2="128" stroke="#ff8a00" stroke-width="1.2" marker-end="url(#arrow-link)"/>
+      <line x1="296" y1="160" x2="296" y2="224" stroke="#9a9aa6" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <line x1="368" y1="256" x2="408" y2="256" stroke="#9a9aa6" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <line x1="480" y1="288" x2="480" y2="352" stroke="#9a9aa6" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <line x1="552" y1="384" x2="592" y2="384" stroke="#ff8a00" stroke-width="1.2" marker-end="url(#arrow-link)"/>
+      <line x1="664" y1="288" x2="664" y2="352" stroke="#9a9aa6" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+      <line x1="736" y1="384" x2="776" y2="384" stroke="#9a9aa6" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+      <!-- Etiqueta de flecha -->
+      <rect x="672" y="314" width="76" height="12" rx="2" fill="#07070a"/>
+      <text x="710" y="323" fill="#9a9aa6" font-size="8" font-family="'JetBrains Mono', monospace" text-anchor="middle" letter-spacing="0.08em">SI LA API CAE</text>
+
+      <!-- Nodo: API pública (externo) -->
+      <rect x="40" y="96" width="144" height="64" rx="6" fill="#07070a"/>
+      <rect x="40" y="96" width="144" height="64" rx="6" fill="rgba(154,154,166,0.10)" stroke="#9a9aa6" stroke-width="1"/>
+      <rect x="48" y="104" width="28" height="12" rx="2" fill="transparent" stroke="rgba(154,154,166,0.50)" stroke-width="0.8"/>
+      <text x="62" y="113" fill="#9a9aa6" font-size="7" font-family="'JetBrains Mono', monospace" text-anchor="middle" letter-spacing="0.08em">EXT</text>
+      <text x="112" y="133" fill="#f4f1ec" font-size="12" font-weight="600" font-family="'Inter', sans-serif" text-anchor="middle">API de resultados</text>
+      <text x="112" y="149" fill="#9a9aa6" font-size="9" font-family="'JetBrains Mono', monospace" text-anchor="middle">pública · oficial</text>
+
+      <!-- Nodo: tarea programada -->
+      <rect x="224" y="96" width="144" height="64" rx="6" fill="#07070a"/>
+      <rect x="224" y="96" width="144" height="64" rx="6" fill="#14141b" stroke="#f4f1ec" stroke-width="1"/>
+      <rect x="232" y="104" width="32" height="12" rx="2" fill="transparent" stroke="rgba(244,241,236,0.40)" stroke-width="0.8"/>
+      <text x="248" y="113" fill="#f4f1ec" font-size="7" font-family="'JetBrains Mono', monospace" text-anchor="middle" letter-spacing="0.08em">CRON</text>
+      <text x="296" y="133" fill="#f4f1ec" font-size="12" font-weight="600" font-family="'Inter', sans-serif" text-anchor="middle">Tarea programada</text>
+      <text x="296" y="149" fill="#9a9aa6" font-size="9" font-family="'JetBrains Mono', monospace" text-anchor="middle">publish-season.mjs</text>
+
+      <!-- Nodo: motor de cálculo (focal) -->
+      <rect x="224" y="224" width="144" height="64" rx="6" fill="#07070a"/>
+      <rect x="224" y="224" width="144" height="64" rx="6" fill="rgba(255,45,31,0.10)" stroke="#ff2d1f" stroke-width="1"/>
+      <rect x="232" y="232" width="32" height="12" rx="2" fill="transparent" stroke="rgba(255,45,31,0.55)" stroke-width="0.8"/>
+      <text x="248" y="241" fill="#ff2d1f" font-size="7" font-family="'JetBrains Mono', monospace" text-anchor="middle" letter-spacing="0.08em">CALC</text>
+      <text x="296" y="261" fill="#f4f1ec" font-size="12" font-weight="600" font-family="'Inter', sans-serif" text-anchor="middle">Motor de cálculo</text>
+      <text x="296" y="277" fill="#9a9aa6" font-size="9" font-family="'JetBrains Mono', monospace" text-anchor="middle">motogp.mjs</text>
+
+      <!-- Nodo: KV (almacén) -->
+      <rect x="408" y="224" width="144" height="64" rx="6" fill="#07070a"/>
+      <rect x="408" y="224" width="144" height="64" rx="6" fill="rgba(244,241,236,0.05)" stroke="#9a9aa6" stroke-width="1"/>
+      <rect x="416" y="232" width="24" height="12" rx="2" fill="transparent" stroke="rgba(154,154,166,0.50)" stroke-width="0.8"/>
+      <text x="428" y="241" fill="#9a9aa6" font-size="7" font-family="'JetBrains Mono', monospace" text-anchor="middle" letter-spacing="0.08em">KV</text>
+      <text x="480" y="261" fill="#f4f1ec" font-size="12" font-weight="600" font-family="'Inter', sans-serif" text-anchor="middle">Copia guardada</text>
+      <text x="480" y="277" fill="#9a9aa6" font-size="9" font-family="'JetBrains Mono', monospace" text-anchor="middle">datos de la temporada</text>
+
+      <!-- Nodo: función /api/season -->
+      <rect x="408" y="352" width="144" height="64" rx="6" fill="#07070a"/>
+      <rect x="408" y="352" width="144" height="64" rx="6" fill="#14141b" stroke="#f4f1ec" stroke-width="1"/>
+      <rect x="416" y="360" width="24" height="12" rx="2" fill="transparent" stroke="rgba(244,241,236,0.40)" stroke-width="0.8"/>
+      <text x="428" y="369" fill="#f4f1ec" font-size="7" font-family="'JetBrains Mono', monospace" text-anchor="middle" letter-spacing="0.08em">FN</text>
+      <text x="480" y="389" fill="#f4f1ec" font-size="12" font-weight="600" font-family="'Inter', sans-serif" text-anchor="middle">API propia</text>
+      <text x="480" y="405" fill="#9a9aa6" font-size="9" font-family="'JetBrains Mono', monospace" text-anchor="middle">/api/season</text>
+
+      <!-- Nodo: copia de respaldo (opcional) -->
+      <rect x="592" y="224" width="144" height="64" rx="6" fill="#07070a"/>
+      <rect x="592" y="224" width="144" height="64" rx="6" fill="#07070a" stroke="#9a9aa6" stroke-width="1" stroke-dasharray="4,3"/>
+      <rect x="600" y="232" width="32" height="12" rx="2" fill="transparent" stroke="rgba(154,154,166,0.50)" stroke-width="0.8"/>
+      <text x="616" y="241" fill="#9a9aa6" font-size="7" font-family="'JetBrains Mono', monospace" text-anchor="middle" letter-spacing="0.08em">COPIA</text>
+      <text x="664" y="261" fill="#f4f1ec" font-size="12" font-weight="600" font-family="'Inter', sans-serif" text-anchor="middle">Copia de respaldo</text>
+      <text x="664" y="277" fill="#9a9aa6" font-size="9" font-family="'JetBrains Mono', monospace" text-anchor="middle">navegador · snapshot.js</text>
+
+      <!-- Nodo: datos y titulares (focal) -->
+      <rect x="592" y="352" width="144" height="64" rx="6" fill="#07070a"/>
+      <rect x="592" y="352" width="144" height="64" rx="6" fill="rgba(255,45,31,0.10)" stroke="#ff2d1f" stroke-width="1"/>
+      <rect x="600" y="360" width="20" height="12" rx="2" fill="transparent" stroke="rgba(255,45,31,0.55)" stroke-width="0.8"/>
+      <text x="610" y="369" fill="#ff2d1f" font-size="7" font-family="'JetBrains Mono', monospace" text-anchor="middle" letter-spacing="0.08em">JS</text>
+      <text x="664" y="389" fill="#f4f1ec" font-size="12" font-weight="600" font-family="'Inter', sans-serif" text-anchor="middle">Datos y titulares</text>
+      <text x="664" y="405" fill="#9a9aa6" font-size="9" font-family="'JetBrains Mono', monospace" text-anchor="middle">live.js</text>
+
+      <!-- Nodo: 5 páginas -->
+      <rect x="776" y="352" width="144" height="64" rx="6" fill="#07070a"/>
+      <rect x="776" y="352" width="144" height="64" rx="6" fill="#14141b" stroke="#f4f1ec" stroke-width="1"/>
+      <rect x="784" y="360" width="28" height="12" rx="2" fill="transparent" stroke="rgba(244,241,236,0.40)" stroke-width="0.8"/>
+      <text x="798" y="369" fill="#f4f1ec" font-size="7" font-family="'JetBrains Mono', monospace" text-anchor="middle" letter-spacing="0.08em">WEB</text>
+      <text x="848" y="389" fill="#f4f1ec" font-size="12" font-weight="600" font-family="'Inter', sans-serif" text-anchor="middle">5 páginas</text>
+      <text x="848" y="405" fill="#9a9aa6" font-size="9" font-family="'JetBrains Mono', monospace" text-anchor="middle">GSAP · Lenis · Three.js</text>
+
+      <!-- Notas al margen -->
+      <text x="920" y="112" fill="#f4f1ec" font-size="14" font-style="italic" font-family="'Instrument Serif', serif" text-anchor="end">Cada 30 min en fin de semana de carrera, cada 6 h el resto:</text>
+      <text x="920" y="132" fill="#f4f1ec" font-size="14" font-style="italic" font-family="'Instrument Serif', serif" text-anchor="end">los visitantes leen la copia, nunca la API oficial.</text>
+      <path d="M 640,144 Q 560,148 524,220" fill="none" stroke="rgba(244,241,236,0.40)" stroke-width="1" stroke-dasharray="4,3"/>
+      <circle cx="524" cy="224" r="2" fill="#f4f1ec"/>
+
+      <text x="40" y="452" fill="#f4f1ec" font-size="14" font-style="italic" font-family="'Instrument Serif', serif">Calcula, no copia: ganadores, poles y quién</text>
+      <text x="40" y="472" fill="#f4f1ec" font-size="14" font-style="italic" font-family="'Instrument Serif', serif">ya es campeón salen de los datos en bruto.</text>
+      <path d="M 200,436 Q 236,380 288,292" fill="none" stroke="rgba(244,241,236,0.40)" stroke-width="1" stroke-dasharray="4,3"/>
+      <circle cx="288" cy="292" r="2" fill="#f4f1ec"/>
+
+      <!-- Leyenda -->
+      <line x1="40" y1="504" x2="920" y2="504" stroke="rgba(244,241,236,0.12)" stroke-width="0.8"/>
+      <text x="40" y="524" fill="#9a9aa6" font-size="8" font-family="'JetBrains Mono', monospace" letter-spacing="0.18em">LEYENDA</text>
+
+      <rect x="40" y="540" width="14" height="10" rx="2" fill="rgba(255,45,31,0.10)" stroke="#ff2d1f" stroke-width="1"/>
+      <text x="60" y="548" fill="#9a9aa6" font-size="9" font-family="'Inter', sans-serif">Pieza clave</text>
+
+      <rect x="148" y="540" width="14" height="10" rx="2" fill="#14141b" stroke="#f4f1ec" stroke-width="1"/>
+      <text x="168" y="548" fill="#9a9aa6" font-size="9" font-family="'Inter', sans-serif">Código propio</text>
+
+      <rect x="264" y="540" width="14" height="10" rx="2" fill="rgba(244,241,236,0.05)" stroke="#9a9aa6" stroke-width="1"/>
+      <text x="284" y="548" fill="#9a9aa6" font-size="9" font-family="'Inter', sans-serif">Almacén</text>
+
+      <rect x="352" y="540" width="14" height="10" rx="2" fill="rgba(154,154,166,0.10)" stroke="#9a9aa6" stroke-width="1"/>
+      <text x="372" y="548" fill="#9a9aa6" font-size="9" font-family="'Inter', sans-serif">Servicio externo</text>
+
+      <rect x="476" y="540" width="14" height="10" rx="2" fill="#07070a" stroke="#9a9aa6" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="496" y="548" fill="#9a9aa6" font-size="9" font-family="'Inter', sans-serif">Respaldo</text>
+
+      <line x1="572" y1="545" x2="596" y2="545" stroke="#ff8a00" stroke-width="1.2" marker-end="url(#arrow-link)"/>
+      <text x="604" y="548" fill="#9a9aa6" font-size="9" font-family="'Inter', sans-serif">Petición HTTP</text>
+
+      <line x1="696" y1="545" x2="720" y2="545" stroke="#9a9aa6" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <text x="728" y="548" fill="#9a9aa6" font-size="9" font-family="'Inter', sans-serif">Datos</text>
+    </svg>
+    </div>
+  </div>
+</body>
+</html>
